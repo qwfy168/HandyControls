@@ -1,51 +1,40 @@
 <p align="center">
-    <img align="center" src="https://gitee.com/handyorg/HandyOrgResource/raw/master/HandyControl/Resources/Cover.png">
-</p>
-
-<p align="center">
-    <a href="https://github.com/HandyOrg/HandyControl/blob/master/README-cn.md">中文</a> 
-    ❤ 
-    <a href="https://github.com/HandyOrg/HandyControl/blob/master/README.md">English</a>
+    <img align="center" src="https://raw.githubusercontent.com/handyorg/HandyOrgResource/master/HandyControl/Resources/Cover.png">
 </p>
 
 <p align="center">
     <img alt="dotnet-version" src="https://img.shields.io/badge/.net-%3E%3D4.0-blue.svg"></img>
     <img alt="csharp-version" src="https://img.shields.io/badge/C%23-8.0-blue.svg"></img>
     <img alt="IDE-version" src="https://img.shields.io/badge/IDE-vs2019-blue.svg"></img>
-    <a href="https://www.nuget.org/packages/HandyControl">
-        <img alt="nuget-version" src="https://img.shields.io/nuget/v/HandyControl.svg"></img>
+    <a href="https://www.nuget.org/packages/HandyControls">
+        <img alt="nuget-version" src="https://img.shields.io/nuget/v/HandyControls.svg"></img>
     </a> 
-    <a href="https://www.myget.org/feed/handycontrol/package/nuget/HandyControl">
-        <img alt="myget-version" src="https://img.shields.io/myget/handycontrol/v/handycontrol?color=orange&label=myget"></img>
-    </a> 
-    <a href="https://github.com/HandyOrg/HandyControl/actions?query=workflow%3Abuild">
-        <img alt="Github-build-status" src="https://github.com/HandyOrg/HandyControl/workflows/build/badge.svg"></img>
+    <a href="https://github.com/ghost1372/HandyControls/actions?query=workflow%3Abuild">
+        <img alt="Github-build-status" src="https://github.com/ghost1372/HandyControls/workflows/build/badge.svg"></img>
     </a>
-    <a href="https://www.nuget.org/packages/HandyControl">
-        <img alt="Nuget" src="https://img.shields.io/nuget/dt/handycontrol"></img>
+    <a href="https://www.myget.org/feed/handycontrols/package/nuget/HandyControls">
+        <img alt="myget-version" src="https://img.shields.io/myget/handycontrols/v/handycontrols?color=orange&label=myget"></img>
+    </a> 
+    <a href="https://www.nuget.org/packages/HandyControls">
+        <img alt="Nuget" src="https://img.shields.io/nuget/dt/handycontrols"></img>
+    </a> 
+    <a href="https://ghost1372.github.io">
+        <img alt="Document" src="https://img.shields.io/badge/Document-Updated-success"></img>
     </a> 
 </p>
 
-## 面向中国
+<br>
+<p align="center">
+	<b>🙌 Donate Bitcoin with <a href="https://link.trustwallet.com/send?coin=0&address=bc1qzs4kt4aeqym6gsde669g5rksv4swjhzjqqp23a">Trust</a>🙌</b><br>
+	<b>🙌 Donate ETH with <a href="https://link.trustwallet.com/send?coin=60&address=0x40Db4476c1D498b167f76A2c7ED9D45b65eb5d0C">Trust</a>🙌</b><br><br>
+	<b>🙌 Bitcoin: bc1qzs4kt4aeqym6gsde669g5rksv4swjhzjqqp23a<br></b>
+	<b>🙌 ETH: 0x40Db4476c1D498b167f76A2c7ED9D45b65eb5d0C</b>
+</p>
+<br>
 
-### 技术交流
-
-[https://join.slack.com/t/handycontrol/shared_invite/zt-sw29prqd-okFmRlmETdtWhnF7C3foxA](https://join.slack.com/t/handycontrol/shared_invite/zt-sw29prqd-okFmRlmETdtWhnF7C3foxA)
-
-### 码云
-
-[https://gitee.com/handyorg/HandyControl/](https://gitee.com/handyorg/HandyControl/)
-
-### 中文文档
-
-[https://handyorg.github.io/handycontrol/](https://handyorg.github.io/handycontrol/)
-
-### 赞助
-
-* [以HandyControl的名义为慈善事业做贡献（请联系我们上赞助墙）](http://www.chinacharityfederation.org/ConfirmDonation/0.html?zhijie=3) 
-
-* 为我们购买防脱洗发水 （支付宝扫码）  
-![qrcode](https://gitee.com/handyorg/HandyOrgResource/raw/master/HandyControl/Resources/qrcode.png)
+# Welcome to HandyControl
+This project is based on [HandyControl](https://github.com/handyOrg/HandyControl) and includes some controls and features that are not included in the original project [for example support for Persian Calendar and PersianDate, More Controls and More Styles]
+[See what's there](https://ghost1372.github.io/handycontrol/persianToolkit/) 
 
 ## Contributors
 
@@ -141,22 +130,29 @@
 
 if your project is not listed here, let us know! 😀
 
+
+## Documentation
+
+[https://ghost1372.github.io/handycontrol/](https://ghost1372.github.io/handycontrol/)
+
 ## Usage
 
-Step 1: Add a reference to HandyControl or search for HandyControl on the nuget; 
+Step 1: Add a reference to HandyControls or search for HandyControls on the nuget; 
 
-```Install-Package HandyControl```
+```Install-Package HandyControls```
 
 Step 2: Add code in App.xaml as follows:
 ```XML
-<Application.Resources>
+<Application xmlns:hc="https://handyorg.github.io/handycontrol">
+  <Application.Resources>
     <ResourceDictionary>
         <ResourceDictionary.MergedDictionaries>
-            <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
-            <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
-        </ResourceDictionary.MergedDictionaries>
-    </ResourceDictionary>
-</Application.Resources>
+             <hc:ThemeResources/>
+             <hc:Theme/>
+         </ResourceDictionary.MergedDictionaries>
+     </ResourceDictionary>
+  </Application.Resources>
+</Application>
 ```
 
 Step 3: Add NameSpace:
@@ -166,7 +162,7 @@ Step 4: Enjoy coding
 
 ## VSIX packages for Visual Studio
 
-| [VS2019](https://marketplace.visualstudio.com/items?itemName=HandyOrg.HandyControl) |
+| [HandyControls](https://marketplace.visualstudio.com/items?itemName=MahdiHosseini.HandyControls) |
 | ------------- |
 
 ## Stargazers over time
@@ -180,6 +176,10 @@ Step 4: Enjoy coding
 ![Overview-dark](https://raw.githubusercontent.com/HandyOrg/HandyOrgResource/master/HandyControl/Resources/Overview-dark.png)
 
 ## Latest examples
+
+### WinUI Mica Material
+
+![image](https://user-images.githubusercontent.com/9213496/139542436-037f0233-e8c6-4c04-9e16-4d50035ed0b3.png)
 
 ### AutoCompleteTextBox
 
