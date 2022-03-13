@@ -1,13 +1,12 @@
 ﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using HandyControl.Data;
 
 namespace HandyControl.Controls;
 
-public class DataGridAttach
+public partial class DataGridAttach
 {
     public static readonly DependencyProperty ApplyDefaultStyleProperty = DependencyProperty.RegisterAttached(
         "ApplyDefaultStyle", typeof(bool), typeof(DataGridAttach), new PropertyMetadata(ValueBoxes.FalseBox, OnApplyDefaultStyleChanged));
@@ -244,60 +243,6 @@ public class DataGridAttach
                 }
 
                 column.EditingElementStyle = editingElementStyle;
-            }
-        }
-    }
-
-    public static DependencyProperty ShowRowNumberProperty = DependencyProperty.RegisterAttached("ShowRowNumber",
-        typeof(bool), typeof(DataGridAttach),
-        new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.Inherits, OnShowRowNumberChanged));
-
-    public static bool GetShowRowNumber(DependencyObject target) => (bool) target.GetValue(ShowRowNumberProperty);
-
-    public static void SetShowRowNumber(DependencyObject target, bool value) => target.SetValue(ShowRowNumberProperty, ValueBoxes.BooleanBox(value));
-
-    private static void OnShowRowNumberChanged(DependencyObject target, DependencyPropertyChangedEventArgs e)
-    {
-        if (target is not DataGrid dataGrid) return;
-        var show = (bool) e.NewValue;
-
-        if (show)
-        {
-            dataGrid.LoadingRow += DataGrid_LoadingRow;
-            dataGrid.ItemContainerGenerator.ItemsChanged += ItemContainerGeneratorItemsChanged;
-        }
-        else
-        {
-            dataGrid.LoadingRow -= DataGrid_LoadingRow;
-            dataGrid.ItemContainerGenerator.ItemsChanged -= ItemContainerGeneratorItemsChanged;
-        }
-
-        void ItemContainerGeneratorItemsChanged(object sender, ItemsChangedEventArgs e)
-        {
-            var generator = dataGrid.ItemContainerGenerator;
-            var itemsCount = dataGrid.Items.Count;
-
-            if (show)
-            {
-                for (var i = 0; i < itemsCount; i++)
-                {
-                    var row = (DataGridRow) generator.ContainerFromIndex(i);
-                    if (row != null)
-                    {
-                        row.Header = (i + 1).ToString();
-                    }
-                }
-            }
-            else
-            {
-                for (var i = 0; i < itemsCount; i++)
-                {
-                    var row = (DataGridRow) generator.ContainerFromIndex(i);
-                    if (row != null)
-                    {
-                        row.Header = null;
-                    }
-                }
             }
         }
     }

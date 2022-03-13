@@ -21,7 +21,7 @@ namespace HandyControl.Controls;
 [TemplatePart(Name = ElementPanelMore, Type = typeof(Panel))]
 [TemplatePart(Name = ElementGridMain, Type = typeof(Grid))]
 [TemplatePart(Name = ElementButtonClose, Type = typeof(Button))]
-public class Growl : Control
+public partial class Growl : Control
 {
     #region Constants
 
@@ -371,16 +371,26 @@ public class Growl : Control
 
                     GrowlWindow.Show(true);
 
+                    var showDateTime = growlInfo.ShowDateTime;
+                    var time = DateTime.Now;
+                    if (growlInfo.ShowPersianDateTime)
+                    {
+                        System.Globalization.PersianCalendar pc = new System.Globalization.PersianCalendar();
+                        time = new DateTime(pc.GetYear(DateTime.Now), pc.GetMonth(DateTime.Now), pc.GetDayOfMonth(DateTime.Now), DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTimeKind.Local);
+                        showDateTime = false;
+                    }
+
                     var ctl = new Growl
                     {
                         Message = growlInfo.Message,
-                        Time = DateTime.Now,
+                        Time = time,
                         Icon = ResourceHelper.GetResource<Geometry>(growlInfo.IconKey) ?? growlInfo.Icon,
                         IconBrush = ResourceHelper.GetResource<Brush>(growlInfo.IconBrushKey) ?? growlInfo.IconBrush,
                         _showCloseButton = growlInfo.ShowCloseButton,
                         ActionBeforeClose = growlInfo.ActionBeforeClose,
                         _staysOpen = growlInfo.StaysOpen,
-                        ShowDateTime = growlInfo.ShowDateTime,
+                        ShowDateTime = showDateTime,
+                        ShowPersianDateTime = growlInfo.ShowPersianDateTime,
                         ConfirmStr = growlInfo.ConfirmStr,
                         CancelStr = growlInfo.CancelStr,
                         Type = growlInfo.Type,
@@ -407,16 +417,26 @@ public class Growl : Control
 #endif
                 () =>
                 {
+                    var showDateTime = growlInfo.ShowDateTime;
+                    var time = DateTime.Now;
+                    if (growlInfo.ShowPersianDateTime)
+                    {
+                        System.Globalization.PersianCalendar pc = new System.Globalization.PersianCalendar();
+                        time = new DateTime(pc.GetYear(DateTime.Now), pc.GetMonth(DateTime.Now), pc.GetDayOfMonth(DateTime.Now), DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTimeKind.Local);
+                        showDateTime = false;
+                    }
+
                     var ctl = new Growl
                     {
                         Message = growlInfo.Message,
-                        Time = DateTime.Now,
+                        Time = time,
                         Icon = ResourceHelper.GetResource<Geometry>(growlInfo.IconKey) ?? growlInfo.Icon,
                         IconBrush = ResourceHelper.GetResource<Brush>(growlInfo.IconBrushKey) ?? growlInfo.IconBrush,
                         _showCloseButton = growlInfo.ShowCloseButton,
                         ActionBeforeClose = growlInfo.ActionBeforeClose,
                         _staysOpen = growlInfo.StaysOpen,
-                        ShowDateTime = growlInfo.ShowDateTime,
+                        ShowDateTime = showDateTime,
+                        ShowPersianDateTime = growlInfo.ShowPersianDateTime,
                         ConfirmStr = growlInfo.ConfirmStr,
                         CancelStr = growlInfo.CancelStr,
                         Type = growlInfo.Type,

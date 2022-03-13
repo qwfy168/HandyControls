@@ -16,7 +16,7 @@ namespace HandyControl.Controls;
 [TemplatePart(Name = ScrollButtonLeft, Type = typeof(ButtonBase))]
 [TemplatePart(Name = ScrollButtonRight, Type = typeof(ButtonBase))]
 [TemplatePart(Name = HeaderBorder, Type = typeof(Border))]
-public class TabControl : System.Windows.Controls.TabControl
+public partial class TabControl : System.Windows.Controls.TabControl
 {
     private const string OverflowButtonKey = "PART_OverflowButton";
 

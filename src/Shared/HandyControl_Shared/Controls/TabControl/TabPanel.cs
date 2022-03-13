@@ -4,11 +4,12 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using HandyControl.Data;
+using HandyControl.Themes;
 using HandyControl.Tools;
 
 namespace HandyControl.Controls;
 
-public class TabPanel : Panel
+public partial class TabPanel : Panel
 {
     private int _itemCount;
 
@@ -165,14 +166,10 @@ public class TabPanel : Panel
         Loaded += (s, e) =>
         {
             if (_isLoaded) return;
-            ForceUpdate = true;
-            Measure(new Size(DesiredSize.Width, ActualHeight));
-            ForceUpdate = false;
-            foreach (var item in ItemDic.Values)
-            {
-                item.TabPanel = this;
-            }
+            UpdateMeasure();
             _isLoaded = true;
         };
+
+        ThemeManager.Current.ActualApplicationThemeChanged += OnThemeChanged;
     }
 }

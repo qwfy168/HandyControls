@@ -24,7 +24,7 @@ namespace HandyControl.Controls;
 [TemplatePart(Name = ElementSliderOpacity, Type = typeof(Panel))]
 [TemplatePart(Name = ElementPanelRgb, Type = typeof(Panel))]
 [TemplatePart(Name = ElementButtonDropper, Type = typeof(ToggleButton))]
-public class ColorPicker : Control, ISingleOpen
+public partial class ColorPicker : Control, ISingleOpen
 {
     #region Constants
 
@@ -381,6 +381,7 @@ public class ColorPicker : Control, ISingleOpen
                 _isLoaded = true;
             }
         };
+        cPicker = this;
     }
 
     public override void OnApplyTemplate()

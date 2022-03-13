@@ -94,7 +94,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\BindToEnum\EnumDescriptionTypeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\BindToEnum\LocalizedDescriptionAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\CheckTreeView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\ColorPicker!.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\CoverView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\Growl!.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\Loading\BusyIndicator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\Loading\LoadingIndicator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\Persian\PersianCalendarWithClock.cs" />
@@ -124,12 +126,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\Persian\PersianDatePicker\DatePickerTextBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\Persian\PersianDatePicker\PersianDatePicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\Persian\PersianDateTimePicker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\SideMenu!.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\SpeedoMeter\Converter\Positive2Nagative.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\SpeedoMeter\Converter\SpeedConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\SpeedoMeter\Converter\ValueToBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\SpeedoMeter\SpeedoMeter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\SplashWindow\ISplashWindow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\SplashWindow\SplashWindow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\TabControl!.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\TabPanel!.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Controls\Window!.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\DynamicLanguage\BaseLocalizationListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\DynamicLanguage\BindingLocalizationConverter.cs" />
@@ -192,6 +197,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Tools\Command\Internals\DelegateCommand\SyncDelegateCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Tools\Command\RelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Tools\Command\SimpleRelayCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Tools\DataGridAttach!.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Tools\Extension\CollectionExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Tools\Extension\CryptographyExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Tools\Extension\DateTimeExtension.cs" />
@@ -250,8 +256,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Tools\Markup\IfExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Tools\Markup\Internals\MultiBindingExtensionBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Tools\Markup\UpdatableMarkupExtension.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Tools\ProgressBarWidthConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Tools\StringRepeatConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Tools\Converter\ProgressBarWidthConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HandyControls\Tools\Converter\StringRepeatConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interactivity\EventToCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interactivity\IEventArgsConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interactivity\MouseDragElementBehaviorEx.cs" />
@@ -1095,6 +1101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Data\Info\" />
+    <Folder Include="$(MSBuildThisFileDirectory)HandyControls\Tools\Converter\" />
     <Folder Include="$(MSBuildThisFileDirectory)Tools\Interop\Handle\" />
   </ItemGroup>
   <ItemGroup>

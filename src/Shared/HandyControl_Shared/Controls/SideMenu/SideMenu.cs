@@ -5,7 +5,7 @@ using HandyControl.Data;
 
 namespace HandyControl.Controls;
 
-public class SideMenu : HeaderedSimpleItemsControl
+public partial class SideMenu : HeaderedSimpleItemsControl
 {
     private SideMenuItem _selectedItem;
 
