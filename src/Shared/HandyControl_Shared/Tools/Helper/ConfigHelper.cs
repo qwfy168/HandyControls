@@ -22,7 +22,7 @@ public class ConfigHelper : INotifyPropertyChanged
 
     public static ConfigHelper Instance = new Lazy<ConfigHelper>(() => new ConfigHelper()).Value;
 
-    private XmlLanguage _lang = XmlLanguage.GetLanguage("zh-cn");
+    private XmlLanguage _lang = XmlLanguage.GetLanguage("en");
 
     public XmlLanguage Lang
     {
@@ -42,6 +42,7 @@ public class ConfigHelper : INotifyPropertyChanged
         LangProvider.Culture = new CultureInfo(lang);
         Application.Current.Dispatcher.Thread.CurrentUICulture = new CultureInfo(lang);
         Lang = XmlLanguage.GetLanguage(lang);
+        LocalizationManager.Instance.OnCultureChanged(new CultureInfo(lang));
     }
 
     public void SetConfig(HandyControlConfig config)

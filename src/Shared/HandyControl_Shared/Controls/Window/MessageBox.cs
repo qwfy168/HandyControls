@@ -248,8 +248,8 @@ public sealed class MessageBox : Window
             messageBox = CreateMessageBox(null, messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.None, MessageBoxResult.OK);
             SetButtonStatus(messageBox, MessageBoxButton.OK, MessageBoxResult.OK);
             messageBox.ShowImage = true;
-            messageBox.Image = ResourceHelper.GetResourceInternal<Geometry>(ResourceToken.SuccessGeometry);
-            messageBox.ImageBrush = ResourceHelper.GetResourceInternal<Brush>(ResourceToken.SuccessBrush);
+            messageBox.Image = ResourceHelper.GetResource<Geometry>(ResourceToken.SuccessGeometry);
+            messageBox.ImageBrush = ResourceHelper.GetResource<Brush>(ResourceToken.SuccessBrush);
             SystemSounds.Asterisk.Play();
             messageBox.ShowDialog();
         }));
@@ -330,8 +330,8 @@ public sealed class MessageBox : Window
             messageBox = CreateMessageBox(null, messageBoxText, caption, MessageBoxButton.OK, MessageBoxImage.None, MessageBoxResult.OK);
             SetButtonStatus(messageBox, MessageBoxButton.OK, MessageBoxResult.OK);
             messageBox.ShowImage = true;
-            messageBox.Image = ResourceHelper.GetResourceInternal<Geometry>(ResourceToken.FatalGeometry);
-            messageBox.ImageBrush = ResourceHelper.GetResourceInternal<Brush>(ResourceToken.PrimaryTextBrush);
+            messageBox.Image = ResourceHelper.GetResource<Geometry>(ResourceToken.FatalGeometry);
+            messageBox.ImageBrush = ResourceHelper.GetResource<Brush>(ResourceToken.PrimaryTextBrush);
             SystemSounds.Asterisk.Play();
             messageBox.ShowDialog();
         }));
@@ -431,11 +431,15 @@ public sealed class MessageBox : Window
 
     private static MessageBox CreateMessageBox(
         System.Windows.Window owner,
-        string messageBoxText,
-        string caption,
-        MessageBoxButton button,
-        MessageBoxImage icon,
-        MessageBoxResult defaultResult)
+            string messageBoxText,
+            string caption,
+            MessageBoxButton button,
+            MessageBoxImage icon,
+            MessageBoxResult defaultResult,
+            string cancelContent = null,
+            string confirmContent = null,
+            string yesContent = null,
+            string noContent = null)
     {
         if (!IsValidMessageBoxButton(button))
         {
@@ -460,6 +464,10 @@ public sealed class MessageBox : Window
             WindowStartupLocation = WindowStartupLocation.CenterScreen,
             ShowTitle = true,
             Title = caption ?? string.Empty,
+            CancelContent = cancelContent ?? Properties.Langs.Lang.Cancel,
+            ConfirmContent = confirmContent ?? Properties.Langs.Lang.Confirm,
+            YesContent = yesContent ?? Properties.Langs.Lang.Yes,
+            NoContent = noContent ?? Properties.Langs.Lang.No,
             Topmost = ownerIsNull,
             _messageBoxResult = defaultResult
         };
@@ -477,7 +485,7 @@ public sealed class MessageBox : Window
                     IsDefault = true,
                     Content = Lang.Confirm,
                     Command = ControlCommands.Confirm,
-                    Style = ResourceHelper.GetResourceInternal<Style>("MessageBoxButtonStyle")
+                    Style = ResourceHelper.GetResource<Style>("MessageBoxButtonStyle")
                 };
 
                 break;
@@ -499,15 +507,15 @@ public sealed class MessageBox : Window
 
                 if (defaultResult == MessageBoxResult.Cancel)
                 {
-                    messageBox._buttonOk.Style = ResourceHelper.GetResourceInternal<Style>("MessageBoxButtonStyle");
-                    messageBox._buttonCancel.Style = ResourceHelper.GetResourceInternal<Style>("MessageBoxPrimaryButtonStyle");
+                    messageBox._buttonOk.Style = ResourceHelper.GetResource<Style>("MessageBoxButtonStyle");
+                    messageBox._buttonCancel.Style = ResourceHelper.GetResource<Style>("MessageBoxPrimaryButtonStyle");
                     messageBox._buttonCancel.IsDefault = true;
                 }
                 else
                 {
-                    messageBox._buttonOk.Style = ResourceHelper.GetResourceInternal<Style>("MessageBoxPrimaryButtonStyle");
+                    messageBox._buttonOk.Style = ResourceHelper.GetResource<Style>("MessageBoxPrimaryButtonStyle");
                     messageBox._buttonOk.IsDefault = true;
-                    messageBox._buttonCancel.Style = ResourceHelper.GetResourceInternal<Style>("MessageBoxButtonStyle");
+                    messageBox._buttonCancel.Style = ResourceHelper.GetResource<Style>("MessageBoxButtonStyle");
                 }
 
                 break;
@@ -528,15 +536,15 @@ public sealed class MessageBox : Window
 
                 if (defaultResult == MessageBoxResult.No)
                 {
-                    messageBox._buttonYes.Style = ResourceHelper.GetResourceInternal<Style>("MessageBoxButtonStyle");
-                    messageBox._buttonNo.Style = ResourceHelper.GetResourceInternal<Style>("MessageBoxPrimaryButtonStyle");
+                    messageBox._buttonYes.Style = ResourceHelper.GetResource<Style>("MessageBoxButtonStyle");
+                    messageBox._buttonNo.Style = ResourceHelper.GetResource<Style>("MessageBoxPrimaryButtonStyle");
                     messageBox._buttonNo.IsDefault = true;
                 }
                 else
                 {
-                    messageBox._buttonYes.Style = ResourceHelper.GetResourceInternal<Style>("MessageBoxPrimaryButtonStyle");
+                    messageBox._buttonYes.Style = ResourceHelper.GetResource<Style>("MessageBoxPrimaryButtonStyle");
                     messageBox._buttonYes.IsDefault = true;
-                    messageBox._buttonNo.Style = ResourceHelper.GetResourceInternal<Style>("MessageBoxButtonStyle");
+                    messageBox._buttonNo.Style = ResourceHelper.GetResource<Style>("MessageBoxButtonStyle");
                 }
 
                 break;
@@ -565,24 +573,24 @@ public sealed class MessageBox : Window
 
                 if (defaultResult == MessageBoxResult.No)
                 {
-                    messageBox._buttonYes.Style = ResourceHelper.GetResourceInternal<Style>("MessageBoxButtonStyle");
-                    messageBox._buttonNo.Style = ResourceHelper.GetResourceInternal<Style>("MessageBoxPrimaryButtonStyle");
+                    messageBox._buttonYes.Style = ResourceHelper.GetResource<Style>("MessageBoxButtonStyle");
+                    messageBox._buttonNo.Style = ResourceHelper.GetResource<Style>("MessageBoxPrimaryButtonStyle");
                     messageBox._buttonNo.IsDefault = true;
-                    messageBox._buttonCancel.Style = ResourceHelper.GetResourceInternal<Style>("MessageBoxButtonStyle");
+                    messageBox._buttonCancel.Style = ResourceHelper.GetResource<Style>("MessageBoxButtonStyle");
                 }
                 else if (defaultResult == MessageBoxResult.Cancel)
                 {
-                    messageBox._buttonYes.Style = ResourceHelper.GetResourceInternal<Style>("MessageBoxButtonStyle");
-                    messageBox._buttonNo.Style = ResourceHelper.GetResourceInternal<Style>("MessageBoxButtonStyle");
-                    messageBox._buttonCancel.Style = ResourceHelper.GetResourceInternal<Style>("MessageBoxPrimaryButtonStyle");
+                    messageBox._buttonYes.Style = ResourceHelper.GetResource<Style>("MessageBoxButtonStyle");
+                    messageBox._buttonNo.Style = ResourceHelper.GetResource<Style>("MessageBoxButtonStyle");
+                    messageBox._buttonCancel.Style = ResourceHelper.GetResource<Style>("MessageBoxPrimaryButtonStyle");
                     messageBox._buttonCancel.IsDefault = true;
                 }
                 else
                 {
-                    messageBox._buttonYes.Style = ResourceHelper.GetResourceInternal<Style>("MessageBoxPrimaryButtonStyle");
+                    messageBox._buttonYes.Style = ResourceHelper.GetResource<Style>("MessageBoxPrimaryButtonStyle");
                     messageBox._buttonYes.IsDefault = true;
-                    messageBox._buttonNo.Style = ResourceHelper.GetResourceInternal<Style>("MessageBoxButtonStyle");
-                    messageBox._buttonCancel.Style = ResourceHelper.GetResourceInternal<Style>("MessageBoxButtonStyle");
+                    messageBox._buttonNo.Style = ResourceHelper.GetResource<Style>("MessageBoxButtonStyle");
+                    messageBox._buttonCancel.Style = ResourceHelper.GetResource<Style>("MessageBoxButtonStyle");
                 }
 
                 break;
@@ -616,8 +624,8 @@ public sealed class MessageBox : Window
 
         if (string.IsNullOrEmpty(iconKey)) return;
         messageBox.ShowImage = true;
-        messageBox.Image = ResourceHelper.GetResourceInternal<Geometry>(iconKey);
-        messageBox.ImageBrush = ResourceHelper.GetResourceInternal<Brush>(iconBrushKey);
+        messageBox.Image = ResourceHelper.GetResource<Geometry>(iconKey);
+        messageBox.ImageBrush = ResourceHelper.GetResource<Brush>(iconBrushKey);
     }
 
     private static bool IsValidMessageBoxButton(MessageBoxButton value)
@@ -650,4 +658,42 @@ public sealed class MessageBox : Window
                || value == MessageBoxResult.OK
                || value == MessageBoxResult.Yes;
     }
+
+    #region Button Text
+    public static readonly DependencyProperty CancelContentProperty = DependencyProperty.Register(
+       "CancelContent", typeof(string), typeof(MessageBox), new PropertyMetadata(Properties.Langs.Lang.Cancel));
+
+    public string CancelContent
+    {
+        get => (string) GetValue(CancelContentProperty);
+        set => SetValue(CancelContentProperty, value);
+    }
+
+    public static readonly DependencyProperty ConfirmContentProperty = DependencyProperty.Register(
+       "ConfirmContent", typeof(string), typeof(MessageBox), new PropertyMetadata(Properties.Langs.Lang.Confirm));
+
+    public string ConfirmContent
+    {
+        get => (string) GetValue(ConfirmContentProperty);
+        set => SetValue(ConfirmContentProperty, value);
+    }
+
+    public static readonly DependencyProperty YesContentProperty = DependencyProperty.Register(
+       "YesContent", typeof(string), typeof(MessageBox), new PropertyMetadata(Properties.Langs.Lang.Yes));
+
+    public string YesContent
+    {
+        get => (string) GetValue(YesContentProperty);
+        set => SetValue(YesContentProperty, value);
+    }
+
+    public static readonly DependencyProperty NoContentProperty = DependencyProperty.Register(
+       "NoContent", typeof(string), typeof(MessageBox), new PropertyMetadata(Properties.Langs.Lang.No));
+
+    public string NoContent
+    {
+        get => (string) GetValue(NoContentProperty);
+        set => SetValue(NoContentProperty, value);
+    }
+    #endregion
 }

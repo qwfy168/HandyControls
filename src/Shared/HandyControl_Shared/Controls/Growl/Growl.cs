@@ -331,7 +331,7 @@ public class Growl : Control
             }
         };
 
-        PanelElement.SetFluidMoveBehavior(panel, ResourceHelper.GetResourceInternal<FluidMoveBehavior>(ResourceToken.BehaviorXY400));
+        PanelElement.SetFluidMoveBehavior(panel, ResourceHelper.GetResource<FluidMoveBehavior>(ResourceToken.BehaviorXY400));
     }
 
     private void Update()

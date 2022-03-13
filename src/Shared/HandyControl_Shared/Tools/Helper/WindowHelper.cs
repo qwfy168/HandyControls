@@ -14,7 +14,7 @@ using Window = System.Windows.Window;
 
 namespace HandyControl.Tools;
 
-public static class WindowHelper
+public static partial class WindowHelper
 {
     /// <summary>
     ///     获取当前应用中处于激活的一个窗口

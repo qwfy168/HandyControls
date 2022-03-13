@@ -11,7 +11,7 @@ namespace HandyControl.Controls;
 [TemplatePart(Name = ElementButtonConfirm, Type = typeof(Button))]
 [TemplatePart(Name = ElementClockPresenter, Type = typeof(ContentPresenter))]
 [TemplatePart(Name = ElementCalendarPresenter, Type = typeof(ContentPresenter))]
-public class CalendarWithClock : Control
+public partial class CalendarWithClock : Control
 {
     #region Constants
 

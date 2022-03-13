@@ -8,6 +8,9 @@ using HandyControl.Data;
 using HandyControl.Tools;
 using HandyControl.Tools.Extension;
 using HandyControl.Tools.Interop;
+using System.Windows.Controls;
+using System.Windows.Automation.Peers;
+using System.Windows.Automation.Provider;
 #if NET40
 using Microsoft.Windows.Shell;
 #else
@@ -17,7 +20,7 @@ using System.Windows.Shell;
 namespace HandyControl.Controls
 {
     [TemplatePart(Name = ElementNonClientArea, Type = typeof(UIElement))]
-    public class Window : System.Windows.Window
+    public partial class Window : System.Windows.Window
     {
         #region fields
 
@@ -63,7 +66,8 @@ namespace HandyControl.Controls
             {
                 CornerRadius = new CornerRadius(),
                 GlassFrameThickness = new Thickness(0, 0, 0, 1),
-                UseAeroCaptionButtons = false
+                UseAeroCaptionButtons = false,
+                ResizeBorderThickness = new Thickness(8)
             };
 #endif
             BindingOperations.SetBinding(chrome, WindowChrome.CaptionHeightProperty,
@@ -246,6 +250,8 @@ namespace HandyControl.Controls
             base.OnApplyTemplate();
 
             _nonClientArea = GetTemplateChild(ElementNonClientArea) as UIElement;
+            _ButtonMax = GetTemplateChild(ButtonMax) as Button;
+            _ButtonRestore = GetTemplateChild(ButtonRestore) as Button;
         }
 
         #endregion
@@ -361,23 +367,99 @@ namespace HandyControl.Controls
                     WmGetMinMaxInfo(hwnd, lparam);
                     Padding = WindowState == WindowState.Maximized ? WindowHelper.WindowMaximizedPadding : _commonPadding;
                     break;
+                #region SnapLayout
                 case InteropValues.WM_NCHITTEST:
-                    // for fixing #886
-                    // https://developercommunity.visualstudio.com/t/overflow-exception-in-windowchrome/167357
                     try
                     {
-                        _ = lparam.ToInt32();
+                        int x = lparam.ToInt32() & 0xffff;
+                        if (OSVersionHelper.IsWindows11_OrGreater && ShowNonClientArea && ShowMaxButton && ResizeMode is not ResizeMode.NoResize and not ResizeMode.CanMinimize)
+                        {
+                            int y = lparam.ToInt32() >> 16;
+                            var DPI_SCALE = DpiHelper.LogicalToDeviceUnitsScalingFactorX;
+                            var _button = WindowState == WindowState.Maximized ? _ButtonRestore : _ButtonMax;
+                            if (_button != null)
+                            {
+                                var rect = new Rect(_button.PointToScreen(
+                                new Point()),
+                                new Size(_button.Width * DPI_SCALE, _button.Height * DPI_SCALE));
+                                if (rect.Contains(new Point(x, y)))
+                                {
+                                    handled = true;
+                                    _button.Background = OtherButtonHoverBackground;
+                                }
+                                else
+                                {
+                                    _button.Background = OtherButtonBackground;
+                                }
+                                return new IntPtr(HTMAXBUTTON);
+                            }
+                        }
                     }
                     catch (OverflowException)
                     {
                         handled = true;
                     }
                     break;
+                case InteropValues.WM_NCLBUTTONDOWN:
+                    if (OSVersionHelper.IsWindows11_OrGreater && ShowNonClientArea && ShowMaxButton && ResizeMode is not ResizeMode.NoResize and not ResizeMode.CanMinimize)
+                    {
+                        int x = lparam.ToInt32() & 0xffff;
+                        int y = lparam.ToInt32() >> 16;
+                        var DPI_SCALE = DpiHelper.LogicalToDeviceUnitsScalingFactorX;
+                        var _button = WindowState == WindowState.Maximized ? _ButtonRestore : _ButtonMax;
+                        if (_button != null)
+                        {
+                            var rect = new Rect(_button.PointToScreen(
+                            new Point()),
+                            new Size(_button.Width * DPI_SCALE, _button.Height * DPI_SCALE));
+                            if (rect.Contains(new Point(x, y)))
+                            {
+                                handled = true;
+                                IInvokeProvider invokeProv = new ButtonAutomationPeer(_button).GetPattern(PatternInterface.Invoke) as IInvokeProvider;
+                                invokeProv?.Invoke();
+                            }
+                        }
+                    }
+                    break;
+                #endregion
+                #region System Command
+                case InteropValues.WM_SYSCOMMAND:
+                    if (!ShowMaxButton)
+                    {
+                        if ((int) wparam == InteropValues.SC_MAXIMIZE || (int) wparam == InteropValues.SC_RESTORE)
+                        {
+                            handled = true;
+                        }
+                    }
+                    if (!ShowMinButton)
+                    {
+                        if ((int) wparam == InteropValues.SC_MINIMIZE)
+                        {
+                            handled = true;
+                        }
+                    }
+                    if (!ShowCloseButton)
+                    {
+                        if ((int) wparam == InteropValues.SC_CLOSE)
+                        {
+                            handled = true;
+                        }
+                    }
+                    break;
+                case InteropValues.WM_NCLBUTTONDBLCLK:
+                    if (!ShowMaxButton)
+                    {
+                        handled = true;
+                    }
+                    break;
+                #endregion
+                default:
+                    handled = false;
+                    break;
             }
 
             return IntPtr.Zero;
         }
-
         private static void OnShowNonClientAreaChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var ctl = (Window) d;

@@ -208,7 +208,7 @@ public class TabItem : System.Windows.Controls.TabItem
             menu.SetBinding(VisibilityProperty, new Binding(ShowContextMenuProperty.Name)
             {
                 Source = this,
-                Converter = ResourceHelper.GetResourceInternal<IValueConverter>(ResourceToken.Boolean2VisibilityConverter)
+                Converter = ResourceHelper.GetResource<IValueConverter>(ResourceToken.Boolean2VisibilityConverter)
             });
         }
     }

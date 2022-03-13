@@ -21,7 +21,7 @@ namespace HandyControl.Controls;
 [TemplatePart(Name = ElementTextBox, Type = typeof(WatermarkTextBox))]
 [TemplatePart(Name = ElementButton, Type = typeof(Button))]
 [TemplatePart(Name = ElementPopup, Type = typeof(Popup))]
-public class DateTimePicker : Control, IDataInput
+public partial class DateTimePicker : Control, IDataInput
 {
     #region Constants
 
@@ -488,6 +488,17 @@ public class DateTimePicker : Control, IDataInput
 
     private void InitCalendarWithClock()
     {
+        //PersianToolkit
+        _calendarWithClock = new CalendarWithClock
+        {
+            ShowConfirmButton = true
+        };
+        _calendarWithClock.SetBinding(CalendarWithClock.ConfirmButtonTextProperty, new Binding
+        {
+            Path = new PropertyPath("ConfirmButtonText"),
+            Source = this
+        });
+        //PersianToolkit
         _calendarWithClock = new CalendarWithClock
         {
             ShowConfirmButton = true
