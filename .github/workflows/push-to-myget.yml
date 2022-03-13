@@ -1,5 +1,3 @@
-name: Push To MYGET
-
 on: workflow_dispatch
 
 jobs:
@@ -25,6 +23,6 @@ jobs:
           .\build.ps1
           nuget pack build-for-myget.nuspec -version 3.4.0-beta.${env:GITHUB_RUN_NUMBER}
           $nupkgName = @(gci *.nupkg)[0].Name
-          $mygetSourcePath = "https://www.myget.org/F/handycontrols"
-          nuget setApiKey ${{ secrets.NIGHTLYBUILD }} -Source $mygetSourcePath
+          $mygetSourcePath = "https://www.myget.org/F/handycontrol"
+          nuget setApiKey ${{ secrets.MYGETTOKEN }} -Source $mygetSourcePath
           nuget push $nupkgName -Source $mygetSourcePath

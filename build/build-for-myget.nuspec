@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>HandyControls</id>
-    <version>3.3.4</version>
-    <authors>Mahdi Hosseini</authors>
-    <owners>Mahdi Hosseini</owners>
+    <id>HandyControl</id>
+    <version>3.3.0</version>
     <title>HandyOrg</title>
+    <authors>HandyOrg</authors>
+    <owners>HandyOrg</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <licenseUrl>https://raw.githubusercontent.com/ghost1372/HandyControls/develop/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/ghost1372/HandyControls</projectUrl>
-    <description>Contains some simple and commonly used WPF controls based on HandyControl</description>
-    <copyright>Copyright 2018-2021</copyright>
-    <tags>wpf wpf-ui style styles theme xaml control csharp relativepanel flipclock skin datagrid menu persian calendar gif togglebutton datagrid wpf-controls component cardview navigation dark-theme color-picker notification</tags>
+    <licenseUrl>https://raw.githubusercontent.com/HandyOrg/HandyControl/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/NaBian/HandyControl</projectUrl>
+    <description>Contains some simple and commonly used WPF controls</description>
+    <copyright>Copyright © HandyOrg 2018-2021</copyright>
+    <tags>WPF C# Control</tags>
     <dependencies>
       <group targetFramework=".NETFramework4.0" />
       <group targetFramework=".NETFramework4.5" />
