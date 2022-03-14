@@ -5,7 +5,7 @@
                     xmlns:hc="clr-namespace:HandyControl.Controls">
 
     <Style TargetType="DatePickerTextBox" BasedOn="{StaticResource DatePickerTextBoxStyle}">
-        <Setter Property="ContextMenu" Value="{StaticResource TextBoxContextMenu}" />
+        <Setter Property="ContextMenu" Value="{StaticResource InputContextMenu}" />
     </Style>
 
     <Style x:Key="DatePickerTextBoxStylePersian" TargetType="primitives:DatePickerTextBox">
@@ -14,7 +14,7 @@
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="CaretBrush" Value="{DynamicResource PrimaryTextBrush}"/>
-        <Setter Property="ContextMenu" Value="{StaticResource TextBoxContextMenu}" />
+        <Setter Property="ContextMenu" Value="{StaticResource InputContextMenu}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="primitives:DatePickerTextBox">
